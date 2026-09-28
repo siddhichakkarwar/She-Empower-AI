@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHE EMPOWER AI</title>
+<style>
+:root{--ink:#2a1740;--pl:#5b2a86;--pl2:#efe7f7;--gold:#f2b134;--mint:#2f8f83;--bg:#f7f4fb;--m:#6b6078;--bad:#b3362b;--ln:#e0d7ec}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI","Nirmala UI","Noto Sans","Noto Sans Devanagari","Noto Sans Bengali","Noto Sans Tamil","Noto Sans Telugu",sans-serif}
+h1,h2,h3{font-family:Georgia,"Nirmala UI","Noto Serif",serif;line-height:1.3;margin:0 0 .5rem}
+header{background:var(--ink);color:#fff;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.logo{font-family:Georgia,serif;font-size:1.35rem;font-weight:700}.logo span{color:var(--gold)}
+nav{display:flex;flex-wrap:wrap;gap:6px}
+nav button{background:transparent;color:#d9cdea;border:1px solid transparent;padding:7px 13px;border-radius:999px;font:inherit;cursor:pointer}
+nav button.on{background:var(--gold);color:var(--ink);font-weight:600}
+.tools{display:flex;gap:8px;align-items:center}.tools select{width:auto;padding:6px 8px}.tools button{background:#3a2359;color:#fff;border:1px solid #5b3f85;border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main{max-width:1050px;margin:0 auto;padding:22px 18px 50px}
+.tab{display:none}.tab.on{display:block}
+.hero{background:var(--ink);color:#fff;border-radius:20px;padding:30px 26px;margin-bottom:20px}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem)}.hero p{max-width:62ch;color:#d9cdea}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.flow button{background:#3a2359;color:var(--gold);border:1px solid #5b3f85;border-radius:14px;padding:16px 12px;font:inherit;font-weight:700;font-size:1.05rem;cursor:pointer;text-align:left}
+.flow button:hover{border-color:var(--gold)}.flow .last{background:var(--gold);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.box{background:#fff;border:1px solid var(--ln);border-radius:14px;padding:20px}.box.soft{background:var(--pl2);border-color:#d8c9ec}
+label{display:block;font-size:.88rem;font-weight:600;margin:10px 0 3px}
+input,select{width:100%;padding:10px 12px;border:1px solid #cbbfdc;border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+input[type=checkbox]{width:auto;margin-right:8px}.chk{display:flex;align-items:center;font-weight:400;margin-top:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{background:var(--pl);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:600;cursor:pointer;margin:14px 8px 0 0}
+.btn.alt{background:var(--gold);color:var(--ink)}.btn.ghost{background:#fff;color:var(--pl);border:1px solid var(--pl)}
+.res{margin-top:14px;border-left:5px solid var(--mint);background:#f0faf8;padding:12px 16px;border-radius:0 12px 12px 0}
+.res.warn{border-color:var(--gold);background:#fff8e8}.res.bad{border-color:var(--bad);background:#fdeeec}
+.big{font-family:Georgia,serif;font-size:2rem;color:var(--pl);line-height:1.2}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--ln)}
+ul{padding-left:1.2rem;margin:.4rem 0}li{margin:.35rem 0}.hint{color:var(--m);font-size:.88rem}
+.bar{height:12px;background:var(--pl2);border-radius:99px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;background:var(--pl)}
+.chat{height:300px;overflow:auto;background:#fff;border:1px solid var(--ln);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 14px;border-radius:14px}.msg.u{align-self:flex-end;background:var(--pl);color:#fff}.msg.b{background:var(--pl2)}
+.chips button{background:#fff;border:1px solid var(--pl);color:var(--pl);border-radius:999px;padding:7px 13px;margin:6px 6px 0 0;font:inherit;font-size:.9rem;cursor:pointer}
+.send{display:flex;gap:8px;margin-top:10px}.send .btn{margin:0}
+#splash{position:fixed;inset:0;background:var(--ink);color:#fff;z-index:9;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center}
+#splash h1{font-size:clamp(1.4rem,4vw,2.2rem)}#splash .logo{font-size:2rem;margin-bottom:8px}
+#splash p{color:#d9cdea;max-width:640px}
+#splash .ls{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}
+#splash button{background:#3a2359;color:#fff;border:2px solid #7b5aa6;border-radius:14px;padding:16px 26px;font:inherit;font-size:1.25rem;cursor:pointer}
+#splash button:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+footer{text-align:center;color:var(--m);font-size:.85rem;padding:0 18px 26px}
+@media(max-width:720px){.flow{grid-template-columns:1fr 1fr}.row2{grid-template-columns:1fr}}
+@media print{header,.noprint,footer,#splash{display:none!important}.tab{display:none}#tab-plan{display:block}body{background:#fff}}
+</style></head><body>
+
+<div id="splash"><div class="logo">SHE <span style="color:var(--gold)">EMPOWER</span> AI</div>
+<h1>Choose your language<br>अपनी भाषा चुनें · ভাষা বেছে নিন · भाषा निवडा · భాషను ఎంచుకోండి · மொழியைத் தேர்ந்தெடுங்கள்</h1>
+<div class="ls" id="ls"></div></div>
+
+<header><div class="logo">SHE <span>EMPOWER</span> AI</div>
+<nav id="nav" aria-label="Main"></nav>
+<div class="tools"><select id="lsel" aria-label="Language"></select><button id="lis" class="noprint" data-i="lis">🔊</button></div></header>
+<main>
+<section id="tab-home" class="tab on">
+<div class="hero"><h1 data-i="h1"></h1><p data-i="hp"></p>
+<div class="flow"><button data-go="understand" data-i="n2"></button><button data-go="calculate" data-i="n3"></button><button data-go="decide" data-i="n4"></button><button data-go="plan" class="last" data-i="act"></button></div></div>
+<div class="grid">
+<div class="box"><h2 data-i="pt"></h2>
+<label for="bname" data-i="kn"></label><input id="bname">
+<label for="btype" data-i="bt"></label><select id="btype"></select>
+<div id="owrap" style="display:none"><label for="bother" data-i="ot"></label><input id="bother"></div>
+<label for="barea" data-i="ar"></label><input id="barea">
+<label for="bcust" data-i="cu"></label><input id="bcust">
+<label for="bstage" data-i="bs"></label><select id="bstage"></select>
+<button class="btn" id="save" data-i="sv"></button><div id="str"></div></div>
+<div class="box soft"><h3 data-i="pv1"></h3><p data-i="pv2"></p>
+<label class="chk"><input type="checkbox" id="rem"><span data-i="rm"></span></label>
+<button class="btn ghost" id="del" data-i="dl"></button></div></div>
+</section>
+
+<section id="tab-understand" class="tab"><h2 data-i="n2"></h2>
+<div class="grid"><div class="box" id="cust"></div><div class="box" id="mkt"></div><div class="box" id="loc"></div></div>
+<div class="box" style="margin-top:18px"><h3 data-i="et"></h3>
+<div class="row2"><div><select id="e_cat" aria-label="Category"></select></div><div><input id="e_amt" type="number" min="0" data-p="am"></div></div>
+<button class="btn" id="e_add" data-i="ad"></button><div id="e_out"></div></div></section>
+
+<section id="tab-calculate" class="tab"><h2 data-i="n3"></h2>
+<div class="grid"><div class="box"><h3 data-i="pt2"></h3>
+<div class="row2"><div><label for="p_mat" data-i="pm"></label><input id="p_mat" type="number" value="60"></div><div><label for="p_pack" data-i="pk"></label><input id="p_pack" type="number" value="10"></div></div>
+<div class="row2"><div><label for="p_hrs" data-i="ph"></label><input id="p_hrs" type="number" step="0.25" value="0.5"></div><div><label for="p_rate" data-i="pr"></label><input id="p_rate" type="number" value="100"></div></div>
+<div class="row2"><div><label for="p_fix" data-i="pf"></label><input id="p_fix" type="number" value="3000"></div><div><label for="p_units" data-i="pu"></label><input id="p_units" type="number" value="100"></div></div>
+<div class="row2"><div><label for="p_mg" data-i="pg"></label><input id="p_mg" type="number" value="30"></div><div><label for="p_gst">GST (%)</label><select id="p_gst"><option>0</option><option>5</option><option>12</option><option>18</option></select></div></div>
+<label for="p_comp" data-i="pc"></label><input id="p_comp" type="number">
+<button class="btn" id="p_go" data-i="pgo"></button><div id="p_out"></div></div>
+<div class="box"><h3 data-i="bt2"></h3>
+<div class="row2"><div><label for="b_start" data-i="bst"></label><input id="b_start" type="number" value="25000"></div><div><label for="b_fix" data-i="pf"></label><input id="b_fix" type="number" value="3000"></div></div>
+<div class="row2"><div><label for="b_price" data-i="bpr"></label><input id="b_price" type="number" value="150"></div><div><label for="b_var" data-i="bvr"></label><input id="b_var" type="number" value="120"></div></div>
+<label for="b_units" data-i="bun"></label><input id="b_units" type="number" value="100">
+<button class="btn" id="b_go" data-i="bgo"></button><div id="b_out"></div></div></div></section>
+
+<section id="tab-decide" class="tab"><h2 data-i="n4"></h2>
+<div class="grid"><div class="box">
+<label for="d_type" data-i="dq"></label><select id="d_type"></select>
+<label for="d_amt" data-i="dam"></label><input id="d_amt" type="number" value="100000">
+<div class="row2"><div><label for="d_prof" data-i="dpr"></label><input id="d_prof" type="number" value="12000"></div><div><label for="d_sav" data-i="dsv"></label><input id="d_sav" type="number" value="30000"></div></div>
+<div class="row2"><div><label for="d_dem" data-i="ddm"></label><select id="d_dem"></select></div><div><label for="d_fam" data-i="dfm"></label><select id="d_fam"></select></div></div>
+<button class="btn" id="d_go" data-i="dgo"></button></div><div id="d_out"></div></div></section>
+
+<section id="tab-ask" class="tab"><h2 data-i="at"></h2>
+<div class="chat" id="chat" aria-live="polite"></div><div class="chips" id="chips"></div>
+<div class="send"><input id="q" data-p="aph" aria-label="Question"><button class="btn" id="qs" data-i="ab"></button></div></section>
+
+<section id="tab-plan" class="tab"><h2 data-i="n6"></h2><div id="plan"></div>
+<button class="btn alt noprint" onclick="window.print()" data-i="pp"></button></section>
+</main>
+<footer data-i="disc"></footer>
+
+<script>
+// Order of every array: English, Hindi, Bengali, Marathi, Telugu, Tamil
+const CODES=['en-IN','hi-IN','bn-IN','mr-IN','te-IN','ta-IN'],NAMES=['English','हिन्दी','বাংলা','मराठी','తెలుగు','தமிழ்'];
+const D={
+n1:['Home','होम','হোম','मुख्यपृष्ठ','హోమ్','முகப்பு'],
+n2:['Understand','समझें','বুঝুন','समजून घ्या','తెలుసుకోండి','புரிந்துகொள்ள'],
+n3:['Calculate','हिसाब लगाएं','হিসাব করুন','हिशोब करा','లెక్కించండి','கணக்கிடு'],
+n4:['Decide','निर्णय लें','সিদ্ধান্ত নিন','निर्णय घ्या','నిర్ణయించండి','முடிவு செய்'],
+n5:['Ask AI','AI से पूछें','AI-কে জিজ্ঞাসা করুন','AI ला विचारा','AI ని అడగండి','AI-யிடம் கேளுங்கள்'],
+n6:['Action Plan','कार्य योजना','কর্মপরিকল্পনা','कृती योजना','కార్యాచరణ ప్రణాళిక','செயல் திட்டம்'],
+act:['Action to take','करने योग्य कदम','করণীয় পদক্ষেপ','करायची पावले','చేయాల్సిన చర్య','எடுக்க வேண்டிய நடவடிக்கை'],
+lis:['🔊 Listen','🔊 सुनें','🔊 শুনুন','🔊 ऐका','🔊 వినండి','🔊 கேளுங்கள்'],
+h1:['Start your business with clear numbers and clear next steps.','साफ़ हिसाब और साफ़ अगले कदम के साथ अपना व्यवसाय शुरू करें।','স্পষ্ট হিসাব ও স্পষ্ট পরবর্তী ধাপ নিয়ে আপনার ব্যবসা শুরু করুন।','स्पष्ट हिशोब आणि स्पष्ट पुढच्या पावलांसह तुमचा व्यवसाय सुरू करा.','స్పష్టమైన లెక్కలు, స్పష్టమైన తదుపరి అడుగులతో మీ వ్యాపారం ప్రారంభించండి.','தெளிவான கணக்கு, தெளிவான அடுத்த படிகளுடன் உங்கள் தொழிலைத் தொடங்குங்கள்.'],
+hp:['Understand your customers, price with confidence, plan your budget in rupees and decide what to do next.','अपने ग्राहकों को समझें, आत्मविश्वास से दाम तय करें, रुपयों में बजट बनाएं और अगला कदम चुनें।','গ্রাহকদের বুঝুন, আত্মবিশ্বাসের সঙ্গে দাম ঠিক করুন, টাকায় বাজেট করুন এবং পরবর্তী পদক্ষেপ ঠিক করুন।','ग्राहकांना समजून घ्या, आत्मविश्वासाने किंमत ठरवा, रुपयांत बजेट आखा आणि पुढचे पाऊल ठरवा.','మీ కస్టమర్లను అర్థం చేసుకోండి, ధైర్యంగా ధర నిర్ణయించండి, రూపాయల్లో బడ్జెట్ వేయండి, తదుపరి అడుగు ఎంచుకోండి.','வாடிக்கையாளர்களைப் புரிந்துகொள்ளுங்கள், நம்பிக்கையுடன் விலை நிர்ணயுங்கள், ரூபாயில் பட்ஜெட் போடுங்கள், அடுத்த படியை முடிவு செய்யுங்கள்.'],
+pt:['Tell us about your business','अपने व्यवसाय के बारे में बताएं','আপনার ব্যবসা সম্পর্কে বলুন','तुमच्या व्यवसायाबद्दल सांगा','మీ వ్యాపారం గురించి చెప్పండి','உங்கள் தொழிலைப் பற்றி சொல்லுங்கள்'],
+kn:['Business name (optional)','व्यवसाय का नाम (वैकल्पिक)','ব্যবসার নাম (ঐচ্ছিক)','व्यवसायाचे नाव (ऐच्छिक)','వ్యాపారం పేరు (ఐచ్ఛికం)','தொழில் பெயர் (விருப்பம்)'],
+bt:['What do you sell or offer?','आप क्या बेचती हैं या कौन सी सेवा देती हैं?','আপনি কী বিক্রি করেন বা কী সেবা দেন?','तुम्ही काय विकता किंवा कोणती सेवा देता?','మీరు ఏమి అమ్ముతారు లేదా ఏ సేవ అందిస్తారు?','நீங்கள் என்ன விற்கிறீர்கள் அல்லது என்ன சேவை தருகிறீர்கள்?'],
+ot:['Write your own business (e.g. robotics kits for schools)','अपना व्यवसाय लिखें (जैसे स्कूलों के लिए रोबोटिक्स किट)','আপনার ব্যবসা লিখুন (যেমন স্কুলের জন্য রোবোটিক্স কিট)','तुमचा व्यवसाय लिहा (उदा. शाळांसाठी रोबोटिक्स किट)','మీ వ్యాపారాన్ని రాయండి (ఉదా. పాఠశాలలకు రోబోటిక్స్ కిట్లు)','உங்கள் தொழிலை எழுதுங்கள் (எ.கா. பள்ளிகளுக்கான ரோபோட்டிக்ஸ் கிட்)'],
+ar:['Your area or city','आपका इलाका या शहर','আপনার এলাকা বা শহর','तुमचा परिसर किंवा शहर','మీ ప్రాంతం లేదా నగరం','உங்கள் பகுதி அல்லது நகரம்'],
+cu:['Who are your customers? (e.g. families, schools)','आपके ग्राहक कौन हैं? (जैसे परिवार, स्कूल)','আপনার গ্রাহক কারা? (যেমন পরিবার, স্কুল)','तुमचे ग्राहक कोण आहेत? (उदा. कुटुंबे, शाळा)','మీ కస్టమర్లు ఎవరు? (ఉదా. కుటుంబాలు, పాఠశాలలు)','உங்கள் வாடிக்கையாளர்கள் யார்? (எ.கா. குடும்பங்கள், பள்ளிகள்)'],
+bs:['Where are you now?','आप अभी कहाँ हैं?','আপনি এখন কোথায়?','तुम्ही सध्या कुठे आहात?','మీరు ఇప్పుడు ఏ దశలో ఉన్నారు?','நீங்கள் இப்போது எந்த நிலையில் உள்ளீர்கள்?'],
+s1:['I have an idea','मेरे पास एक विचार है','আমার একটি ধারণা আছে','माझ्याकडे कल्पना आहे','నా దగ్గర ఒక ఆలోచన ఉంది','என்னிடம் ஒரு யோசனை உள்ளது'],
+s2:['I just started','मैंने अभी शुरू किया है','আমি সবে শুরু করেছি','मी नुकतीच सुरुवात केली','ఇప్పుడే మొదలుపెట్టాను','இப்போதுதான் தொடங்கினேன்'],
+s3:['Running, but not growing','चल रहा है, पर बढ़ नहीं रहा','চলছে, কিন্তু বাড়ছে না','चालू आहे, पण वाढत नाही','నడుస్తోంది, కానీ పెరగడం లేదు','நடக்கிறது, ஆனால் வளரவில்லை'],
+sv:['Save and continue','सहेजें और आगे बढ़ें','সংরক্ষণ করে এগিয়ে যান','जतन करून पुढे जा','సేవ్ చేసి కొనసాగండి','சேமித்து தொடரவும்'],
+y1:['Home kitchen and food','घर की रसोई और खाना','ঘরোয়া রান্না ও খাবার','घरगुती स्वयंपाक व खाद्यपदार्थ','ఇంటి వంట, ఆహారం','வீட்டு சமையல் மற்றும் உணவு'],
+y2:['Tailoring and boutique','सिलाई और बुटीक','সেলাই ও বুটিক','शिवणकाम व बुटीक','టైలరింగ్, బొటిక్','தையல் மற்றும் பூட்டிக்'],
+y3:['Beauty and salon','ब्यूटी और सैलून','বিউটি ও সেলুন','ब्युटी व सलून','బ్యూటీ, సెలూన్','அழகு மற்றும் சலூன்'],
+y4:['Handicrafts and gifts','हस्तशिल्प और उपहार','হস্তশিল্প ও উপহার','हस्तकला व भेटवस्तू','హస్తకళలు, బహుమతులు','கைவினை மற்றும் பரிசுகள்'],
+y5:['Tuition and classes','ट्यूशन और कक्षाएं','টিউশন ও ক্লাস','शिकवणी व वर्ग','ట్యూషన్, తరగతులు','டியூஷன் மற்றும் வகுப்புகள்'],
+y6:['Online reselling','ऑनलाइन रीसेलिंग','অনলাইন রিসেলিং','ऑनलाइन पुनर्विक्री','ఆన్‌లైన్ రీసేలింగ్','ஆன்லைன் மறுவிற்பனை'],
+y7:['Technology or robotics','टेक्नोलॉजी या रोबोटिक्स','প্রযুক্তি বা রোবোটিক্স','तंत्रज्ञान किंवा रोबोटिक्स','టెక్నాలజీ లేదా రోబోటిక్స్','தொழில்நுட்பம் அல்லது ரோபோட்டிக்ஸ்'],
+y8:['Other (I will write my own)','अन्य (मैं खुद लिखूंगी)','অন্য (আমি নিজে লিখব)','इतर (मी स्वतः लिहीन)','ఇతరము (నేనే రాస్తాను)','மற்றவை (நானே எழுதுகிறேன்)'],
+pv1:['Private and works offline','निजी और बिना इंटरनेट चलता है','ব্যক্তিগত ও ইন্টারনেট ছাড়াই চলে','खाजगी आणि इंटरनेटशिवाय चालते','ప్రైవేట్, ఇంటర్నెట్ లేకుండా పనిచేస్తుంది','தனிப்பட்டது, இணையம் இல்லாமலும் இயங்கும்'],
+pv2:['Your numbers stay on this device. Nothing is sent to any server.','आपके आंकड़े इसी डिवाइस पर रहते हैं। कुछ भी किसी सर्वर पर नहीं भेजा जाता।','আপনার তথ্য এই ডিভাইসেই থাকে। কোনো সার্ভারে পাঠানো হয় না।','तुमची माहिती याच डिव्हाइसवर राहते. काहीही सर्व्हरला पाठवले जात नाही.','మీ వివరాలు ఈ పరికరంలోనే ఉంటాయి. ఏ సర్వర్‌కీ పంపబడవు.','உங்கள் விவரங்கள் இந்த சாதனத்திலேயே இருக்கும். எந்த சர்வருக்கும் அனுப்பப்படாது.'],
+rm:['Remember my data on this device','इस डिवाइस पर मेरा डेटा याद रखें','এই ডিভাইসে আমার তথ্য মনে রাখুন','या डिव्हाइसवर माझी माहिती लक्षात ठेवा','ఈ పరికరంలో నా డేటాను గుర్తుంచుకోండి','இந்த சாதனத்தில் என் தரவை நினைவில் வைத்திருங்கள்'],
+dl:['Delete all my data','मेरा सारा डेटा मिटाएं','আমার সব তথ্য মুছুন','माझा सर्व डेटा हटवा','నా డేటా మొత్తం తొలగించండి','என் எல்லா தரவையும் நீக்கு'],
+ps:['Profile strength','प्रोफ़ाइल की पूर्णता','প্রোফাইলের সম্পূর্ণতা','प्रोफाइल पूर्णता','ప్రొఫైల్ పూర్తి స్థాయి','சுயவிவர முழுமை'],
+ms:['Add these for better advice:','बेहतर सलाह के लिए ये जोड़ें:','ভালো পরামর্শের জন্য এগুলো যোগ করুন:','चांगल्या सल्ल्यासाठी हे जोडा:','మెరుగైన సలహాకు ఇవి చేర్చండి:','சிறந்த ஆலோசனைக்கு இவற்றைச் சேருங்கள்:'],
+uc:['Your customers','आपके ग्राहक','আপনার গ্রাহক','तुमचे ग्राहक','మీ కస్టమర్లు','உங்கள் வாடிக்கையாளர்கள்'],
+c1:['Talk to 10 real customers this week.','इस हफ्ते 10 असली ग्राहकों से बात करें।','এই সপ্তাহে ১০ জন প্রকৃত গ্রাহকের সঙ্গে কথা বলুন।','या आठवड्यात १० खऱ्या ग्राहकांशी बोला.','ఈ వారం 10 మంది నిజమైన కస్టమర్లతో మాట్లాడండి.','இந்த வாரம் 10 உண்மையான வாடிக்கையாளர்களுடன் பேசுங்கள்.'],
+c2:['Ask what they buy now, how often, what they pay, and what they dislike. That is your chance.','पूछें कि वे अभी क्या खरीदते हैं, कितनी बार, कितने में, और क्या पसंद नहीं। वही आपका मौका है।','জিজ্ঞাসা করুন তারা এখন কী কেনে, কতবার, কত দামে, এবং কী অপছন্দ। সেটাই আপনার সুযোগ।','ते सध्या काय, किती वेळा, किती किंमतीला घेतात आणि काय आवडत नाही ते विचारा. तिथेच तुमची संधी आहे.','వారు ఇప్పుడు ఏమి, ఎంత తరచుగా, ఎంత ధరకు కొంటారో, ఏది నచ్చదో అడగండి. అదే మీ అవకాశం.','அவர்கள் இப்போது என்ன, எத்தனை முறை, என்ன விலைக்கு வாங்குகிறார்கள், எது பிடிக்கவில்லை என்று கேளுங்கள். அதுவே உங்கள் வாய்ப்பு.'],
+tt:['Tech or robotics tip: build one small demo, show it to 5 buyers (schools, shops, small factories) and take advance orders before building more.','टेक/रोबोटिक्स सुझाव: एक छोटा डेमो बनाएं, 5 खरीदारों (स्कूल, दुकानें, छोटी फैक्ट्रियां) को दिखाएं और ज़्यादा बनाने से पहले एडवांस ऑर्डर लें।','প্রযুক্তি/রোবোটিক্স পরামর্শ: একটি ছোট ডেমো বানান, ৫ জন ক্রেতাকে (স্কুল, দোকান, ছোট কারখানা) দেখান এবং আরও বানানোর আগে অগ্রিম অর্ডার নিন।','तंत्रज्ञान/रोबोटिक्स सूचना: एक छोटा डेमो बनवा, ५ खरेदीदारांना (शाळा, दुकाने, लहान कारखाने) दाखवा आणि जास्त बनवण्यापूर्वी आगाऊ ऑर्डर घ्या.','టెక్/రోబోటిక్స్ సూచన: ఒక చిన్న డెమో తయారు చేసి, 5 కొనుగోలుదారులకు (పాఠశాలలు, దుకాణాలు, చిన్న ఫ్యాక్టరీలు) చూపించి, ఇంకా తయారు చేసే ముందు అడ్వాన్స్ ఆర్డర్లు తీసుకోండి.','தொழில்நுட்ப/ரோபோட்டிக்ஸ் குறிப்பு: ஒரு சிறிய டெமோ உருவாக்கி, 5 வாங்குபவர்களுக்கு (பள்ளிகள், கடைகள், சிறு தொழிற்சாலைகள்) காட்டி, மேலும் உருவாக்கும் முன் முன்பணத்துடன் ஆர்டர் பெறுங்கள்.'],
+um:['30-day marketing plan','30 दिन की मार्केटिंग योजना','৩০ দিনের মার্কেটিং পরিকল্পনা','३० दिवसांची मार्केटिंग योजना','30 రోజుల మార్కెటింగ్ ప్రణాళిక','30 நாள் சந்தைப்படுத்தல் திட்டம்'],
+w1:['Week 1: Make a WhatsApp Business catalogue with photos, prices and a UPI QR code.','सप्ताह 1: फोटो, दाम और UPI QR कोड के साथ WhatsApp Business कैटलॉग बनाएं।','সপ্তাহ ১: ছবি, দাম ও UPI QR কোড সহ WhatsApp Business ক্যাটালগ বানান।','आठवडा १: फोटो, किंमत आणि UPI QR कोडसह WhatsApp Business कॅटलॉग बनवा.','వారం 1: ఫోటోలు, ధరలు, UPI QR కోడ్‌తో WhatsApp Business కేటలాగ్ తయారు చేయండి.','வாரம் 1: புகைப்படங்கள், விலைகள், UPI QR குறியீட்டுடன் WhatsApp Business பட்டியலை உருவாக்குங்கள்.'],
+w2:['Week 2: Tell 30 people you know. Ask each for a review or a referral.','सप्ताह 2: जानने वाले 30 लोगों को बताएं। हर एक से रिव्यू या रेफ़रल मांगें।','সপ্তাহ ২: পরিচিত ৩০ জনকে বলুন। প্রত্যেকের কাছে রিভিউ বা রেফারেল চান।','आठवडा २: ओळखीच्या ३० लोकांना सांगा. प्रत्येकाकडून रिव्ह्यू किंवा रेफरल मागा.','వారం 2: తెలిసిన 30 మందికి చెప్పండి. ప్రతి ఒక్కరినీ రివ్యూ లేదా రెఫరల్ అడగండి.','வாரம் 2: தெரிந்த 30 பேரிடம் சொல்லுங்கள். ஒவ்வொருவரிடமும் மதிப்புரை அல்லது பரிந்துரை கேளுங்கள்.'],
+w3:['Weeks 3-4: Post 3 times a week showing how you make it. Give 10 customers a first-time offer and note where each came from.','सप्ताह 3-4: हफ्ते में 3 बार पोस्ट करें और बनाने का तरीका दिखाएं। 10 ग्राहकों को पहली बार का ऑफ़र दें और नोट करें कि कौन कहाँ से आया।','সপ্তাহ ৩-৪: সপ্তাহে ৩ বার পোস্ট করে কীভাবে বানান দেখান। ১০ জন গ্রাহককে প্রথমবারের অফার দিন এবং কে কোথা থেকে এল লিখুন।','आठवडे ३-४: आठवड्यातून ३ वेळा पोस्ट करून ते कसे बनवता ते दाखवा. १० ग्राहकांना पहिली ऑफर द्या आणि प्रत्येकजण कुठून आला ते नोंदवा.','వారాలు 3-4: వారానికి 3 సార్లు పోస్ట్ చేసి ఎలా తయారు చేస్తారో చూపించండి. 10 మంది కస్టమర్లకు మొదటిసారి ఆఫర్ ఇచ్చి ఎవరు ఎక్కడి నుండి వచ్చారో నోట్ చేయండి.','வாரங்கள் 3-4: வாரத்திற்கு 3 முறை பதிவிட்டு எப்படி செய்கிறீர்கள் என்று காட்டுங்கள். 10 வாடிக்கையாளர்களுக்கு முதல்முறை சலுகை கொடுத்து ஒவ்வொருவரும் எங்கிருந்து வந்தார்கள் என்று குறிக்கவும்.'],
+lm:['Know your local market','अपने स्थानीय बाज़ार को जानें','আপনার স্থানীয় বাজারকে জানুন','तुमची स्थानिक बाजारपेठ जाणून घ्या','మీ స్థానిక మార్కెట్‌ను తెలుసుకోండి','உங்கள் உள்ளூர் சந்தையை அறியுங்கள்'],
+l1:['Visit 3 sellers near you and note their prices.','अपने पास के 3 विक्रेताओं के पास जाकर उनके दाम नोट करें।','কাছের ৩ জন বিক্রেতার কাছে গিয়ে তাদের দাম লিখুন।','जवळच्या ३ विक्रेत्यांकडे जाऊन त्यांच्या किंमती नोंदवा.','మీ దగ్గర ఉన్న 3 అమ్మకందారులను కలిసి వారి ధరలు నోట్ చేయండి.','அருகிலுள்ள 3 விற்பனையாளர்களைச் சந்தித்து அவர்களின் விலைகளைக் குறிக்கவும்.'],
+l2:['Find out which festivals and seasons bring most orders, and talk to customers in their own language.','पता करें कि कौन से त्योहार और मौसम में सबसे ज़्यादा ऑर्डर आते हैं, और ग्राहकों से उनकी अपनी भाषा में बात करें।','জানুন কোন উৎসব ও মরসুমে বেশি অর্ডার আসে, এবং গ্রাহকদের সঙ্গে তাদের নিজের ভাষায় কথা বলুন।','कोणत्या सणांना व हंगामात जास्त ऑर्डर येतात ते शोधा आणि ग्राहकांशी त्यांच्या भाषेत बोला.','ఏ పండుగలు, సీజన్లలో ఎక్కువ ఆర్డర్లు వస్తాయో తెలుసుకోండి, కస్టమర్లతో వారి భాషలోనే మాట్లాడండి.','எந்த பண்டிகைகள், பருவங்களில் அதிக ஆர்டர்கள் வருகின்றன என்று அறிந்து, வாடிக்கையாளர்களிடம் அவர்கள் மொழியில் பேசுங்கள்.'],
+et:['Expense tracker','खर्च का हिसाब','খরচের হিসাব','खर्चाची नोंद','ఖర్చుల లెక్క','செலவு கணக்கு'],
+ex1:['Raw material','कच्चा माल','কাঁচামাল','कच्चा माल','ముడి సరుకు','மூலப்பொருள்'],
+ex2:['Transport','परिवहन','পরিবহন','वाहतूक','రవాణా','போக்குவரத்து'],
+ex3:['Marketing','मार्केटिंग','মার্কেটিং','मार्केटिंग','మార్కెటింగ్','சந்தைப்படுத்தல்'],
+ex4:['Other','अन्य','অন্যান্য','इतर','ఇతరాలు','மற்றவை'],
+am:['Amount (₹)','राशि (₹)','পরিমাণ (₹)','रक्कम (₹)','మొత్తం (₹)','தொகை (₹)'],
+ad:['Add','जोड़ें','যোগ করুন','जोडा','చేర్చండి','சேர்'],
+tot:['Total spent','कुल खर्च','মোট খরচ','एकूण खर्च','మొత్తం ఖర్చు','மொத்த செலவு'],
+big:['Biggest cost','सबसे बड़ा खर्च','সবচেয়ে বড় খরচ','सर्वात मोठा खर्च','అతిపెద్ద ఖర్చు','மிகப்பெரிய செலவு'],
+pt2:['Pricing calculator (costs of ONE unit)','प्राइसिंग कैलकुलेटर (1 इकाई का खर्च)','দাম ক্যালকুলেটর (১ একক-এর খরচ)','किंमत कॅल्क्युलेटर (१ नगाचा खर्च)','ధర కాలిక్యులేటర్ (1 యూనిట్ ఖర్చు)','விலை கணிப்பான் (1 அலகின் செலவு)'],
+pm:['Material (₹)','सामग्री (₹)','উপকরণ (₹)','साहित्य (₹)','సామగ్రి (₹)','பொருள் (₹)'],
+pk:['Packaging (₹)','पैकेजिंग (₹)','প্যাকেজিং (₹)','पॅकेजिंग (₹)','ప్యాకేజింగ్ (₹)','பேக்கிங் (₹)'],
+ph:['Hours you spend','आप कितने घंटे लगाती हैं','আপনি কত ঘণ্টা দেন','तुम्ही किती तास देता','మీరు వెచ్చించే గంటలు','நீங்கள் செலவிடும் மணிநேரம்'],
+pr:['Your pay per hour (₹)','आपकी प्रति घंटा कमाई (₹)','ঘণ্টা প্রতি আপনার পারিশ্রমিক (₹)','तुमचे तासाचे मानधन (₹)','గంటకు మీ వేతనం (₹)','மணிக்கு உங்கள் ஊதியம் (₹)'],
+pf:['Monthly fixed costs (₹)','मासिक स्थायी खर्च (₹)','মাসিক স্থায়ী খরচ (₹)','मासिक निश्चित खर्च (₹)','నెలవారీ స్థిర ఖర్చులు (₹)','மாதாந்திர நிலையான செலவுகள் (₹)'],
+pu:['Units sold per month','प्रति माह बिक्री (इकाइयां)','মাসে বিক্রি (একক)','दरमहा विक्री (नग)','నెలకు అమ్మకాలు (యూనిట్లు)','மாதம் விற்பனை (அலகுகள்)'],
+pg:['Profit wanted (%)','चाहा गया मुनाफ़ा (%)','কাঙ্ক্ষিত মুনাফা (%)','हवा असलेला नफा (%)','కావలసిన లాభం (%)','விரும்பும் லாபம் (%)'],
+pc:['Competitor\'s price (₹, optional)','प्रतिस्पर्धी का दाम (₹, वैकल्पिक)','প্রতিযোগীর দাম (₹, ঐচ্ছিক)','स्पर्धकाची किंमत (₹, ऐच्छिक)','పోటీదారు ధర (₹, ఐచ్ఛికం)','போட்டியாளர் விலை (₹, விருப்பம்)'],
+pgo:['Find my price','मेरा दाम निकालें','আমার দাম বের করুন','माझी किंमत काढा','నా ధర కనుగొనండి','என் விலையைக் கண்டுபிடி'],
+sp:['Suggested price','सुझाया गया दाम','প্রস্তাবিত দাম','सुचवलेली किंमत','సూచించిన ధర','பரிந்துரைக்கப்பட்ட விலை'],
+inc:['Customer pays with GST','ग्राहक GST सहित देगा','GST সহ গ্রাহক দেবেন','GST सह ग्राहक देईल','GST తో కస్టమర్ చెల్లించేది','GST உடன் வாடிக்கையாளர் செலுத்துவது'],
+cpu:['Cost per unit','प्रति इकाई लागत','প্রতি একক খরচ','प्रति नग खर्च','యూనిట్ ఖర్చు','அலகு செலவு'],
+ppu:['Profit per unit','प्रति इकाई मुनाफ़ा','প্রতি একক মুনাফা','प्रति नग नफा','యూనిట్ లాభం','அலகு லாபம்'],
+mpf:['Monthly profit','मासिक मुनाफ़ा','মাসিক মুনাফা','मासिक नफा','నెలవారీ లాభం','மாதாந்திர லாபம்'],
+be:['Break-even (units per month)','ब्रेक-ईवन (इकाइयां प्रति माह)','ব্রেক-ইভেন (মাসে একক)','ब्रेक-ईव्हन (दरमहा नग)','బ్రేక్-ఈవెన్ (నెలకు యూనిట్లు)','பிரேக்-ஈவன் (மாதம் அலகுகள்)'],
+chi:['Your price is much higher than the competitor. Explain why with quality or service.','आपका दाम प्रतिस्पर्धी से काफ़ी ज़्यादा है। गुणवत्ता या सेवा से कारण बताएं।','আপনার দাম প্রতিযোগীর চেয়ে অনেক বেশি। মান বা সেবা দিয়ে কারণ বোঝান।','तुमची किंमत स्पर्धकापेक्षा खूप जास्त आहे. गुणवत्ता किंवा सेवेने कारण पटवा.','మీ ధర పోటీదారు కంటే చాలా ఎక్కువ. నాణ్యత లేదా సేవతో కారణం చెప్పండి.','உங்கள் விலை போட்டியாளரை விட மிகவும் அதிகம். தரம் அல்லது சேவையால் காரணம் காட்டுங்கள்.'],
+clo:['Your price is much lower than the competitor. You may be underpricing.','आपका दाम प्रतिस्पर्धी से काफ़ी कम है। आप कम दाम रख रही होंगी।','আপনার দাম প্রতিযোগীর চেয়ে অনেক কম। আপনি হয়তো কম দাম রাখছেন।','तुमची किंमत स्पर्धकापेक्षा खूप कमी आहे. तुम्ही कमी किंमत लावत असाल.','మీ ధర పోటీదారు కంటే చాలా తక్కువ. మీరు తక్కువ ధర పెడుతున్నారేమో.','உங்கள் விலை போட்டியாளரை விட மிகவும் குறைவு. நீங்கள் குறைவாக விலை வைக்கலாம்.'],
+bew:['Break-even is more than your expected sales. Cut costs or raise the price.','ब्रेक-ईवन आपकी अपेक्षित बिक्री से ज़्यादा है। खर्च घटाएं या दाम बढ़ाएं।','ব্রেক-ইভেন প্রত্যাশিত বিক্রির চেয়ে বেশি। খরচ কমান বা দাম বাড়ান।','ब्रेक-ईव्हन अपेक्षित विक्रीपेक्षा जास्त आहे. खर्च कमी करा किंवा किंमत वाढवा.','బ్రేక్-ఈవెన్ ఆశించిన అమ్మకాల కంటే ఎక్కువ. ఖర్చులు తగ్గించండి లేదా ధర పెంచండి.','பிரேக்-ஈவன் எதிர்பார்க்கும் விற்பனையை விட அதிகம். செலவைக் குறையுங்கள் அல்லது விலையை உயர்த்துங்கள்.'],
+bt2:['Budget and break-even','बजट और ब्रेक-ईवन','বাজেট ও ব্রেক-ইভেন','बजेट आणि ब्रेक-ईव्हन','బడ్జెట్, బ్రేక్-ఈవెన్','பட்ஜெட் மற்றும் பிரேக்-ஈவன்'],
+bst:['Startup money (₹)','शुरुआती निवेश (₹)','শুরুর বিনিয়োগ (₹)','सुरुवातीची गुंतवणूक (₹)','ప్రారంభ పెట్టుబడి (₹)','தொடக்க முதலீடு (₹)'],
+bpr:['Selling price per unit (₹)','प्रति इकाई बिक्री दाम (₹)','প্রতি একক বিক্রয় মূল্য (₹)','प्रति नग विक्री किंमत (₹)','యూనిట్ అమ్మకపు ధర (₹)','அலகு விற்பனை விலை (₹)'],
+bvr:['Variable cost per unit (₹)','प्रति इकाई परिवर्तनीय खर्च (₹)','প্রতি একক পরিবর্তনশীল খরচ (₹)','प्रति नग बदलता खर्च (₹)','యూనిట్ మారే ఖర్చు (₹)','அலகு மாறும் செலவு (₹)'],
+bun:['Units per month','प्रति माह इकाइयां','মাসে একক','दरमहा नग','నెలకు యూనిట్లు','மாதம் அலகுகள்'],
+bgo:['Check my budget','मेरा बजट जांचें','আমার বাজেট দেখুন','माझे बजेट तपासा','నా బడ్జెట్ తనిఖీ చేయండి','என் பட்ஜெட்டைச் சரிபார்'],
+rec:['Startup money back in (months)','निवेश वापस आने में (महीने)','বিনিয়োগ ফেরত আসতে (মাস)','गुंतवणूक परत येण्यास (महिने)','పెట్టుబడి తిరిగి రావడానికి (నెలలు)','முதலீடு திரும்ப (மாதங்கள்)'],
+nl:['Not recovered','वापस नहीं आएगा','ফেরত আসবে না','परत येणार नाही','తిరిగి రాదు','திரும்பாது'],
+bl:['You lose money at this level. Raise sales or price, or cut fixed costs.','इस स्तर पर घाटा है। बिक्री या दाम बढ़ाएं, या स्थायी खर्च घटाएं।','এই স্তরে ক্ষতি হচ্ছে। বিক্রি বা দাম বাড়ান, বা স্থায়ী খরচ কমান।','या पातळीवर तोटा आहे. विक्री किंवा किंमत वाढवा, किंवा निश्चित खर्च कमी करा.','ఈ స్థాయిలో నష్టం. అమ్మకాలు లేదా ధర పెంచండి, లేదా స్థిర ఖర్చులు తగ్గించండి.','இந்த அளவில் நஷ்டம். விற்பனை அல்லது விலையை உயர்த்துங்கள், அல்லது நிலையான செலவைக் குறையுங்கள்.'],
+bo:['This plan looks healthy. Check real sales against it every month.','यह योजना ठीक लगती है। हर महीने असली बिक्री से मिलाएं।','এই পরিকল্পনা ভালো দেখাচ্ছে। প্রতি মাসে আসল বিক্রির সঙ্গে মেলান।','ही योजना चांगली दिसते. दरमहा प्रत्यक्ष विक्रीशी ताडून पाहा.','ఈ ప్రణాళిక బాగుంది. ప్రతి నెలా అసలు అమ్మకాలతో సరిపోల్చండి.','இந்தத் திட்டம் நன்றாக உள்ளது. ஒவ்வொரு மாதமும் உண்மையான விற்பனையுடன் ஒப்பிடுங்கள்.'],
+dq:['What are you thinking about?','आप किस बारे में सोच रही हैं?','আপনি কী নিয়ে ভাবছেন?','तुम्ही कशाचा विचार करत आहात?','మీరు దేని గురించి ఆలోచిస్తున్నారు?','நீங்கள் எதைப் பற்றி யோசிக்கிறீர்கள்?'],
+dd1:['Taking a loan','लोन लेना','ঋণ নেওয়া','कर्ज घेणे','రుణం తీసుకోవడం','கடன் வாங்குதல்'],
+dd2:['Hiring a helper','मददगार रखना','সহায়ক নিয়োগ','मदतनीस ठेवणे','సహాయకుడిని పెట్టుకోవడం','உதவியாளரை நியமித்தல்'],
+dd3:['Expanding or a new product','विस्तार या नया प्रोडक्ट','সম্প্রসারণ বা নতুন পণ্য','विस्तार किंवा नवीन उत्पादन','విస్తరణ లేదా కొత్త ఉత్పత్తి','விரிவாக்கம் அல்லது புதிய பொருள்'],
+dd4:['Going full-time','पूरा समय देना','পূর্ণ সময় দেওয়া','पूर्ण वेळ करणे','పూర్తి సమయం చేయడం','முழு நேரமாகச் செய்தல்'],
+dam:['Money needed (₹)','ज़रूरी रकम (₹)','প্রয়োজনীয় টাকা (₹)','लागणारी रक्कम (₹)','అవసరమైన మొత్తం (₹)','தேவையான தொகை (₹)'],
+dpr:['Monthly profit now (₹)','अभी का मासिक मुनाफ़ा (₹)','এখনকার মাসিক মুনাফা (₹)','सध्याचा मासिक नफा (₹)','ప్రస్తుత నెలవారీ లాభం (₹)','தற்போதைய மாத லாபம் (₹)'],
+dsv:['Savings you can spare (₹)','आप जो बचत लगा सकती हैं (₹)','আপনি যে সঞ্চয় দিতে পারেন (₹)','तुम्ही वापरू शकता ती बचत (₹)','మీరు వాడగల పొదుపు (₹)','நீங்கள் பயன்படுத்தக்கூடிய சேமிப்பு (₹)'],
+ddm:['Customer demand','ग्राहकों की मांग','গ্রাহকের চাহিদা','ग्राहकांची मागणी','కస్టమర్ డిమాండ్','வாடிக்கையாளர் தேவை'],
+dm2:['Growing','बढ़ रही है','বাড়ছে','वाढत आहे','పెరుగుతోంది','வளர்கிறது'],
+dm1:['Steady','स्थिर','স্থির','स्थिर','స్థిరం','நிலையானது'],
+dm0:['Uncertain','अनिश्चित','অনিশ্চিত','अनिश्चित','అనిశ్చితం','உறுதியில்லை'],
+dfm:['Family support','परिवार का साथ','পরিবারের সমর্থন','कुटुंबाचा पाठिंबा','కుటుంబ మద్దతు','குடும்ப ஆதரவு'],
+yes:['Yes','हाँ','হ্যাঁ','होय','అవును','ஆம்'],
+no:['Not yet','अभी नहीं','এখনও না','अजून नाही','ఇంకా లేదు','இன்னும் இல்லை'],
+dgo:['Check my options','मेरे विकल्प जांचें','আমার বিকল্প দেখুন','माझे पर्याय तपासा','నా ఎంపికలను తనిఖీ చేయండి','என் விருப்பங்களைச் சரிபார்'],
+rl:['Low risk','कम जोखिम','কম ঝুঁকি','कमी जोखीम','తక్కువ రిస్క్','குறைந்த ஆபத்து'],
+rm2:['Medium risk','मध्यम जोखिम','মাঝারি ঝুঁকি','मध्यम जोखीम','మధ్యస్థ రిస్క్','நடுத்தர ஆபத்து'],
+rh:['High risk','ज़्यादा जोखिम','বেশি ঝুঁকি','जास्त जोखीम','ఎక్కువ రిస్క్','அதிக ஆபத்து'],
+eb:['Money earned back in (months)','पैसा वापस आने में (महीने)','টাকা ফেরত আসতে (মাস)','पैसे परत येण्यास (महिने)','డబ్బు తిరిగి రావడానికి (నెలలు)','பணம் திரும்ப (மாதங்கள்)'],
+emi:['EMI if loan (12%, 2 years)','लोन पर EMI (12%, 2 साल)','ঋণ হলে EMI (১২%, ২ বছর)','कर्ज असल्यास EMI (१२%, २ वर्षे)','రుణమైతే EMI (12%, 2 ఏళ్లు)','கடனாக இருந்தால் EMI (12%, 2 ஆண்டு)'],
+op:['Your options','आपके विकल्प','আপনার বিকল্প','तुमचे पर्याय','మీ ఎంపికలు','உங்கள் விருப்பங்கள்'],
+o1:['Start smaller, in stages, and test with 10 customers first.','छोटे से, चरणों में शुरू करें और पहले 10 ग्राहकों पर आज़माएं।','ছোট করে, ধাপে ধাপে শুরু করুন এবং আগে ১০ জন গ্রাহকের ওপর পরীক্ষা করুন।','लहान, टप्प्याटप्प्याने सुरू करा आणि आधी १० ग्राहकांवर तपासा.','చిన్నగా, దశలవారీగా మొదలుపెట్టి ముందు 10 కస్టమర్లతో పరీక్షించండి.','சிறிதாக, படிப்படியாகத் தொடங்கி முதலில் 10 வாடிக்கையாளர்களிடம் சோதியுங்கள்.'],
+o3:['Use some savings and borrow only the rest (Mudra, SHG loans).','कुछ बचत लगाएं और बाकी ही उधार लें (मुद्रा, SHG लोन)।','কিছু সঞ্চয় দিন, বাকিটাই ধার নিন (মুদ্রা, SHG ঋণ)।','काही बचत वापरा आणि उरलेलेच कर्ज घ्या (मुद्रा, SHG कर्ज).','కొంత పొదుపు వాడి మిగతాది మాత్రమే అప్పు తీసుకోండి (ముద్రా, SHG రుణాలు).','சிறிது சேமிப்பைப் பயன்படுத்தி மீதியை மட்டும் கடன் வாங்குங்கள் (முத்ரா, SHG கடன்).'],
+nx:['Next step','अगला कदम','পরবর্তী পদক্ষেপ','पुढचे पाऊल','తదుపరి అడుగు','அடுத்த படி'],
+nh:['Do not commit yet. Grow monthly profit for 2-3 months, then check again.','अभी फ़ैसला न लें। 2-3 महीने मुनाफ़ा बढ़ाएं, फिर दोबारा जांचें।','এখনই সিদ্ধান্ত নেবেন না। ২-৩ মাস মুনাফা বাড়ান, তারপর আবার দেখুন।','आत्ताच निर्णय घेऊ नका. २-३ महिने नफा वाढवा, मग पुन्हा तपासा.','ఇప్పుడే నిర్ణయించకండి. 2-3 నెలలు లాభం పెంచి మళ్లీ తనిఖీ చేయండి.','இப்போதே முடிவெடுக்காதீர்கள். 2-3 மாதம் லாபத்தை உயர்த்தி மீண்டும் பாருங்கள்.'],
+nm:['Go ahead only in a smaller, safer form.','केवल छोटे और सुरक्षित रूप में आगे बढ़ें।','শুধু ছোট ও নিরাপদ আকারে এগোন।','फक्त लहान आणि सुरक्षित स्वरूपात पुढे जा.','చిన్న, సురక్షిత రూపంలో మాత్రమే ముందుకు వెళ్లండి.','சிறிய, பாதுகாப்பான வடிவில் மட்டும் முன்னேறுங்கள்.'],
+nk:['You can proceed. Write the amount and date, and review after 30 days.','आप आगे बढ़ सकती हैं। रकम और तारीख लिखें, 30 दिन बाद समीक्षा करें।','আপনি এগোতে পারেন। পরিমাণ ও তারিখ লিখুন, ৩০ দিন পর পর্যালোচনা করুন।','तुम्ही पुढे जाऊ शकता. रक्कम व तारीख लिहा, ३० दिवसांनी आढावा घ्या.','మీరు ముందుకు వెళ్లవచ్చు. మొత్తం, తేదీ రాసి 30 రోజుల తర్వాత సమీక్షించండి.','நீங்கள் தொடரலாம். தொகையும் தேதியும் எழுதி 30 நாளில் மதிப்பாய்வு செய்யுங்கள்.'],
+at:['Ask the AI assistant','AI सहायक से पूछें','AI সহায়ককে জিজ্ঞাসা করুন','AI सहाय्यकाला विचारा','AI సహాయకుడిని అడగండి','AI உதவியாளரிடம் கேளுங்கள்'],
+aph:['Type your question...','अपना सवाल लिखें...','আপনার প্রশ্ন লিখুন...','तुमचा प्रश्न लिहा...','మీ ప్రశ్న రాయండి...','உங்கள் கேள்வியை எழுதுங்கள்...'],
+ab:['Ask','पूछें','জিজ্ঞাসা','विचारा','అడగండి','கேள்'],
+gr:['Hello! Tap a topic or type your question.','नमस्ते! कोई विषय चुनें या सवाल लिखें।','নমস্কার! একটি বিষয় বেছে নিন বা প্রশ্ন লিখুন।','नमस्कार! एखादा विषय निवडा किंवा प्रश्न लिहा.','నమస్తే! ఒక అంశాన్ని ఎంచుకోండి లేదా ప్రశ్న రాయండి.','வணக்கம்! ஒரு தலைப்பைத் தேர்ந்தெடுங்கள் அல்லது கேள்வியை எழுதுங்கள்.'],
+fb:['Please tap one of the topics, or ask about price, customers, GST, loans or savings.','किसी विषय पर टैप करें, या दाम, ग्राहक, GST, लोन या बचत के बारे में पूछें।','কোনো বিষয়ে ট্যাপ করুন, অথবা দাম, গ্রাহক, GST, ঋণ বা সঞ্চয় নিয়ে জিজ্ঞাসা করুন।','एखाद्या विषयावर टॅप करा, किंवा किंमत, ग्राहक, GST, कर्ज किंवा बचतीबद्दल विचारा.','ఒక అంశాన్ని నొక్కండి, లేదా ధర, కస్టమర్లు, GST, రుణం, పొదుపు గురించి అడగండి.','ஒரு தலைப்பைத் தொடுங்கள், அல்லது விலை, வாடிக்கையாளர், GST, கடன், சேமிப்பு பற்றி கேளுங்கள்.'],
+q1:['How do I set my price?','दाम कैसे तय करूं?','দাম কীভাবে ঠিক করব?','किंमत कशी ठरवू?','ధర ఎలా నిర్ణయించాలి?','விலையை எப்படி நிர்ணயிப்பது?'],
+q2:['How do I get customers?','ग्राहक कैसे पाऊं?','গ্রাহক কীভাবে পাব?','ग्राहक कसे मिळवू?','కస్టమర్లను ఎలా పొందాలి?','வாடிக்கையாளர்களை எப்படி பெறுவது?'],
+q3:['Do I need GST or registration?','क्या GST या रजिस्ट्रेशन चाहिए?','GST বা নিবন্ধন লাগবে কি?','GST किंवा नोंदणी लागते का?','GST లేదా రిజిస్ట్రేషన్ కావాలా?','GST அல்லது பதிவு தேவையா?'],
+q4:['Which loans and schemes exist?','कौन से लोन और योजनाएं हैं?','কোন কোন ঋণ ও প্রকল্প আছে?','कोणती कर्जे व योजना आहेत?','ఏ రుణాలు, పథకాలు ఉన్నాయి?','என்ன கடன்கள், திட்டங்கள் உள்ளன?'],
+q5:['How should I split my income?','आमदनी कैसे बांटूं?','আয় কীভাবে ভাগ করব?','उत्पन्न कसे वाटू?','ఆదాయాన్ని ఎలా విభజించాలి?','வருமானத்தை எப்படிப் பிரிப்பது?'],
+a1:['Price = cost per unit (material + packing + your time + share of fixed costs) + your profit. Do not only copy a neighbour. The Calculate section does this for you.','दाम = प्रति इकाई लागत (सामग्री + पैकिंग + आपका समय + स्थायी खर्च का हिस्सा) + आपका मुनाफ़ा। सिर्फ़ पड़ोसी की नकल न करें।','দাম = প্রতি এককের খরচ (উপকরণ + প্যাকিং + আপনার সময় + স্থায়ী খরচের অংশ) + আপনার মুনাফা। শুধু প্রতিবেশীকে নকল করবেন না।','किंमत = प्रति नग खर्च (साहित्य + पॅकिंग + तुमचा वेळ + निश्चित खर्चाचा वाटा) + तुमचा नफा. फक्त शेजाऱ्याची नक्कल करू नका.','ధర = యూనిట్ ఖర్చు (సామగ్రి + ప్యాకింగ్ + మీ సమయం + స్థిర ఖర్చుల వాటా) + మీ లాభం. కేవలం పక్కవారిని అనుకరించకండి.','விலை = அலகு செலவு (பொருள் + பேக்கிங் + உங்கள் நேரம் + நிலையான செலவின் பங்கு) + உங்கள் லாபம். அக்கம்பக்கத்தாரை மட்டும் நகலெடுக்காதீர்கள்.'],
+a2:['Start with people you know. Use a WhatsApp Business catalogue, Instagram reels, a free Google Maps listing and referral offers. Try one channel for 30 days and count orders.','जान-पहचान वालों से शुरू करें। WhatsApp Business कैटलॉग, इंस्टाग्राम रील, मुफ़्त Google Maps लिस्टिंग और रेफ़रल ऑफ़र इस्तेमाल करें। 30 दिन एक तरीका आज़माकर ऑर्डर गिनें।','পরিচিতদের দিয়ে শুরু করুন। WhatsApp Business ক্যাটালগ, ইনস্টাগ্রাম রিল, বিনামূল্যে Google Maps তালিকা ও রেফারেল অফার ব্যবহার করুন। ৩০ দিন একটি উপায় চেষ্টা করে অর্ডার গুনুন।','ओळखीच्या लोकांपासून सुरुवात करा. WhatsApp Business कॅटलॉग, इन्स्टाग्राम रील, मोफत Google Maps लिस्टिंग आणि रेफरल ऑफर वापरा. ३० दिवस एक मार्ग वापरून ऑर्डर मोजा.','తెలిసిన వారితో మొదలుపెట్టండి. WhatsApp Business కేటలాగ్, ఇన్‌స్టాగ్రామ్ రీల్స్, ఉచిత Google Maps లిస్టింగ్, రెఫరల్ ఆఫర్లు వాడండి. 30 రోజులు ఒక మార్గం ప్రయత్నించి ఆర్డర్లు లెక్కించండి.','தெரிந்தவர்களிடம் தொடங்குங்கள். WhatsApp Business பட்டியல், இன்ஸ்டாகிராம் ரீல்ஸ், இலவச Google Maps பட்டியல், பரிந்துரை சலுகைகளைப் பயன்படுத்துங்கள். 30 நாள் ஒரு வழியை முயன்று ஆர்டர்களை எண்ணுங்கள்.'],
+a3:['GST is generally needed above ₹40 lakh yearly sales for goods and ₹20 lakh for services (lower in some states). Register free on Udyam. Food sellers also need FSSAI. Confirm with a CA.','GST आम तौर पर सामान की सालाना बिक्री ₹40 लाख और सेवाओं की ₹20 लाख से ऊपर लगता है (कुछ राज्यों में कम)। Udyam पर मुफ़्त रजिस्ट्रेशन करें। खाने के व्यवसाय को FSSAI भी चाहिए। CA से पुष्टि करें।','GST সাধারণত পণ্যে বছরে ₹৪০ লক্ষ ও সেবায় ₹২০ লক্ষের বেশি বিক্রিতে লাগে (কিছু রাজ্যে কম)। Udyam-এ বিনামূল্যে নিবন্ধন করুন। খাদ্য ব্যবসায় FSSAI-ও লাগে। CA-র সঙ্গে নিশ্চিত করুন।','GST साधारणपणे वस्तूंसाठी वार्षिक ₹४० लाख आणि सेवांसाठी ₹२० लाखांवर लागतो (काही राज्यांत कमी). Udyam वर मोफत नोंदणी करा. खाद्य व्यवसायाला FSSAI लागते. CA कडून खात्री करा.','GST సాధారణంగా వస్తువులకు ఏడాదికి ₹40 లక్షలు, సేవలకు ₹20 లక్షలు దాటితే అవసరం (కొన్ని రాష్ట్రాల్లో తక్కువ). Udyam లో ఉచితంగా నమోదు చేసుకోండి. ఆహార వ్యాపారానికి FSSAI కూడా కావాలి. CA తో నిర్ధారించుకోండి.','GST பொதுவாக பொருட்களுக்கு ஆண்டு விற்பனை ₹40 லட்சம், சேவைகளுக்கு ₹20 லட்சம் தாண்டினால் தேவை (சில மாநிலங்களில் குறைவு). Udyam-ல் இலவசமாகப் பதிவு செய்யுங்கள். உணவு தொழிலுக்கு FSSAI-யும் தேவை. CA-விடம் உறுதிசெய்யுங்கள்.'],
+a4:['Look at PM Mudra Yojana, Stand-Up India (₹10 lakh to ₹1 crore for women), and bank or SHG loans. Limits change, so ask your bank.','PM मुद्रा योजना, स्टैंड-अप इंडिया (महिलाओं के लिए ₹10 लाख से ₹1 करोड़) और बैंक या SHG लोन देखें। सीमाएं बदलती रहती हैं, बैंक से पूछें।','PM মুদ্রা যোজনা, স্ট্যান্ড-আপ ইন্ডিয়া (মহিলাদের জন্য ₹১০ লক্ষ থেকে ₹১ কোটি) এবং ব্যাংক বা SHG ঋণ দেখুন। সীমা বদলায়, ব্যাংকে জিজ্ঞাসা করুন।','PM मुद्रा योजना, स्टँड-अप इंडिया (महिलांसाठी ₹१० लाख ते ₹१ कोटी) आणि बँक किंवा SHG कर्ज पाहा. मर्यादा बदलतात, बँकेत विचारा.','PM ముద్రా యోజన, స్టాండ్-అప్ ఇండియా (మహిళలకు ₹10 లక్షల నుండి ₹1 కోటి), బ్యాంకు లేదా SHG రుణాలు చూడండి. పరిమితులు మారుతాయి, బ్యాంకును అడగండి.','PM முத்ரா யோஜனா, ஸ்டாண்ட்-அப் இந்தியா (பெண்களுக்கு ₹10 லட்சம் முதல் ₹1 கோடி), வங்கி அல்லது SHG கடன்களைப் பாருங்கள். வரம்புகள் மாறும், வங்கியில் கேளுங்கள்.'],
+a5:['A starting split: 50% costs, 30% your pay, 10% growth, 10% emergency. Keep business and home money in separate accounts.','शुरुआती बंटवारा: 50% खर्च, 30% आपकी कमाई, 10% विकास, 10% आपातकाल। व्यवसाय और घर का पैसा अलग खातों में रखें।','শুরুর ভাগ: ৫০% খরচ, ৩০% আপনার আয়, ১০% বৃদ্ধি, ১০% জরুরি। ব্যবসা ও সংসারের টাকা আলাদা অ্যাকাউন্টে রাখুন।','सुरुवातीची वाटणी: ५०% खर्च, ३०% तुमचे मानधन, १०% वाढ, १०% आणीबाणी. व्यवसाय आणि घरचे पैसे वेगळ्या खात्यांत ठेवा.','ప్రారంభ విభజన: 50% ఖర్చులు, 30% మీ వేతనం, 10% వృద్ధి, 10% అత్యవసరం. వ్యాపార, ఇంటి డబ్బు వేర్వేరు ఖాతాల్లో ఉంచండి.','தொடக்கப் பிரிவு: 50% செலவு, 30% உங்கள் ஊதியம், 10% வளர்ச்சி, 10% அவசரம். தொழில் பணத்தையும் வீட்டுப் பணத்தையும் தனி கணக்குகளில் வையுங்கள்.'],
+plg:['Get free Udyam registration, open a separate business bank account and put a UPI QR on your packaging.','मुफ़्त Udyam रजिस्ट्रेशन कराएं, अलग बिज़नेस बैंक खाता खोलें और पैकेजिंग पर UPI QR लगाएं।','বিনামূল্যে Udyam নিবন্ধন করুন, আলাদা ব্যবসার ব্যাংক অ্যাকাউন্ট খুলুন এবং প্যাকেজিংয়ে UPI QR দিন।','मोफत Udyam नोंदणी करा, वेगळे व्यवसाय बँक खाते उघडा आणि पॅकेजिंगवर UPI QR लावा.','ఉచిత Udyam నమోదు చేయండి, ప్రత్యేక వ్యాపార బ్యాంకు ఖాతా తెరవండి, ప్యాకేజింగ్‌పై UPI QR పెట్టండి.','இலவச Udyam பதிவு செய்யுங்கள், தனி தொழில் வங்கிக் கணக்கு திறங்கள், பேக்கிங்கில் UPI QR வையுங்கள்.'],
+pp:['Print or save as PDF','प्रिंट करें या PDF सहेजें','প্রিন্ট করুন বা PDF সংরক্ষণ করুন','प्रिंट करा किंवा PDF जतन करा','ప్రింట్ చేయండి లేదా PDF సేవ్ చేయండి','அச்சிடவும் அல்லது PDF சேமிக்கவும்'],
+disc:['Prototype for planning and learning. Check current GST, licence and loan rules with official sources or a CA.','योजना और सीखने के लिए प्रोटोटाइप। GST, लाइसेंस और लोन के मौजूदा नियम आधिकारिक स्रोत या CA से जांचें।','পরিকল্পনা ও শেখার জন্য প্রোটোটাইপ। GST, লাইসেন্স ও ঋণের বর্তমান নিয়ম সরকারি সূত্র বা CA-র কাছে যাচাই করুন।','नियोजन व शिकण्यासाठी प्रोटोटाइप. GST, परवाना व कर्जाचे सध्याचे नियम अधिकृत स्रोत किंवा CA कडे तपासा.','ప్రణాళిక, నేర్చుకోవడానికి ప్రోటోటైప్. GST, లైసెన్స్, రుణ నియమాలను అధికారిక వనరులు లేదా CA తో తనిఖీ చేయండి.','திட்டமிடவும் கற்கவும் முன்மாதிரி. GST, உரிமம், கடன் விதிகளை அதிகாரப்பூர்வ மூலங்கள் அல்லது CA-விடம் சரிபாருங்கள்.']
+};
+const KW={a1:['price','pricing','daam','rate','cost','दाम','कीमत','किंमत','দাম','ధర','விலை'],a2:['customer','market','sell','grahak','ग्राहक','গ্রাহক','కస్టమర్','வாடிக்கை'],a3:['gst','tax','register','udyam','fssai','रजिस्ट्रेशन','नोंदणी','নিবন্ধন','నమోదు','பதிவு'],a4:['loan','mudra','scheme','लोन','कर्ज','योजना','ঋণ','రుణ','கடன்'],a5:['saving','save','budget','income','बचत','बजट','সঞ্চয়','పొదుపు','சேமிப்பு']};
+const $=id=>document.getElementById(id),inr=n=>'₹'+Math.round(n).toLocaleString('en-IN'),num=id=>+$(id).value||0;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let LI=0;const t=k=>D[k]?(D[k][LI]||D[k][0]):k;
+const S={type:0,oth:'',name:'',area:'',cust:'',stage:0,exp:[],pr:null,bu:null,de:null},RAN={};
+const tn=()=>S.type===7?(S.oth||t('y8')):t('y'+(S.type+1));
+function fill(id,keys){const el=$(id),v=el.selectedIndex;el.innerHTML=keys.map((k,i)=>`<option value="${i}">${t(k)}</option>`).join('');el.selectedIndex=Math.max(v,0)}
+function persist(){if(!$('rem').checked)return;try{localStorage.setItem('she_v2',JSON.stringify({S,LI}))}catch(e){}}
+function setLang(i){LI=i;document.documentElement.lang=CODES[i].slice(0,2);$('lsel').value=i;
+ document.querySelectorAll('[data-i]').forEach(e=>e.textContent=t(e.dataset.i));document.querySelectorAll('[data-p]').forEach(e=>e.placeholder=t(e.dataset.p));
+ $('nav').innerHTML=['home:n1','understand:n2','calculate:n3','decide:n4','ask:n5','plan:n6'].map(x=>{const[a,b]=x.split(':');return`<button data-t="${a}">${t(b)}</button>`}).join('');
+ $('nav').querySelectorAll('button').forEach(b=>b.onclick=()=>go(b.dataset.t));
+ fill('btype',[1,2,3,4,5,6,7,8].map(n=>'y'+n));fill('bstage',['s1','s2','s3']);fill('e_cat',['ex1','ex2','ex3','ex4']);fill('d_type',['dd1','dd2','dd3','dd4']);fill('d_fam',['yes','no']);fill('d_dem',['dm2','dm1','dm0']);
+ $('owrap').style.display=$('btype').value==7?'block':'none';
+ $('chat').innerHTML='';say(t('gr'),'b');$('chips').innerHTML=[1,2,3,4,5].map(n=>`<button data-a="a${n}">${t('q'+n)}</button>`).join('');
+ $('chips').querySelectorAll('button').forEach(b=>b.onclick=()=>{say(b.textContent,'u');say(t(b.dataset.a),'b')});
+ $('splash').style.display='none';const on=document.querySelector('.tab.on').id.slice(4);go(on);
+ ['p','b','d'].forEach(k=>RAN[k]&&$(k+'_go').click());persist()}
+function go(x){document.querySelectorAll('.tab').forEach(e=>e.classList.toggle('on',e.id==='tab-'+x));document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===x));
+ if(x==='understand')rU();if(x==='plan')rPlan();if(x==='home')$('str').innerHTML=strH();window.scrollTo(0,0)}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+$('ls').innerHTML=NAMES.map((n,i)=>`<button data-l="${i}">${n}</button>`).join('');$('ls').querySelectorAll('button').forEach(b=>b.onclick=()=>setLang(+b.dataset.l));
+$('lsel').innerHTML=NAMES.map((n,i)=>`<option value="${i}">${n}</option>`).join('');$('lsel').onchange=e=>setLang(+e.target.value);
+$('btype').onchange=()=>$('owrap').style.display=$('btype').value==7?'block':'none';
+$('save').onclick=()=>{S.type=+$('btype').value;S.oth=$('bother').value.trim();S.name=$('bname').value.trim();S.area=$('barea').value.trim();S.cust=$('bcust').value.trim();S.stage=+$('bstage').value;persist();go('understand')};
+$('rem').onchange=()=>{if($('rem').checked)persist();else try{localStorage.removeItem('she_v2')}catch(e){}};
+$('del').onclick=()=>{try{localStorage.removeItem('she_v2')}catch(e){}location.reload()};
+$('lis').onclick=()=>{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(document.querySelector('.tab.on').innerText.slice(0,1800));u.lang=CODES[LI];speechSynthesis.speak(u)};
+if(!('speechSynthesis' in window))$('lis').style.display='none';
+
+function strH(){const it=[[S.name,'kn'],[S.area,'ar'],[S.cust,'cu'],[S.pr,'n3'],[S.bu,'bt2'],[S.exp.length,'et']],ok=it.filter(x=>x[0]).length,p=Math.round(ok/6*100),m=it.filter(x=>!x[0]).map(x=>t(x[1]).split('(')[0].trim());
+ return`<div class="res ${p<50?'warn':''}" style="margin-top:16px"><b>${t('ps')}: ${p}%</b><div class="bar"><i style="width:${p}%"></i></div>${m.length?`<span class="hint">${t('ms')} ${m.join(', ')}</span>`:''}</div>`}
+function rU(){$('cust').innerHTML=`<h3>${t('uc')}: ${esc(tn())}</h3>${S.area?`<p class="hint">📍 ${esc(S.area)}${S.cust?' · '+esc(S.cust):''}</p>`:''}<ul><li>${t('c1')}</li><li>${t('c2')}</li></ul>${S.type===6?`<div class="res warn">${t('tt')}</div>`:''}`;
+ $('mkt').innerHTML=`<h3>${t('um')}</h3><ul><li>${t('w1')}</li><li>${t('w2')}</li><li>${t('w3')}</li></ul>`;
+ $('loc').innerHTML=`<h3>${t('lm')}</h3><ul><li>${t('l1')}</li><li>${t('l2')}</li></ul>`;rExp()}
+function rExp(){const tot=S.exp.reduce((a,e)=>a+e.a,0);if(!tot)return $('e_out').innerHTML='';const by={};S.exp.forEach(e=>by[e.c]=(by[e.c]||0)+e.a);const top=Object.entries(by).sort((a,b)=>b[1]-a[1]);
+ $('e_out').innerHTML=`<div class="res"><b>${t('tot')}: ${inr(tot)}</b> · ${t('big')}: ${t('ex'+(+top[0][0]+1))}</div>`+top.map(([c,v])=>`<div class="kv"><span>${t('ex'+(+c+1))}</span><span>${inr(v)} (${Math.round(v/tot*100)}%)</span></div><div class="bar"><i style="width:${v/tot*100}%"></i></div>`).join('')}
+$('e_add').onclick=()=>{const a=num('e_amt');if(a<=0)return $('e_amt').focus();S.exp.push({c:$('e_cat').value,a});$('e_amt').value='';persist();rExp()};
+
+$('p_go').onclick=()=>{RAN.p=1;const mat=num('p_mat'),pk=num('p_pack'),h=num('p_hrs'),r=num('p_rate'),fx=num('p_fix'),u=Math.max(num('p_units'),1),mg=Math.min(num('p_mg'),90),g=num('p_gst'),cp=num('p_comp');
+ const vr=mat+pk+h*r,cost=vr+fx/u,price=Math.ceil(cost/(1-mg/100)/5)*5,pf=price-cost,be=price>vr?Math.ceil(fx/(price-vr)):0;let cm='',cl='';
+ if(cp){if(price>cp*1.15){cm=t('chi');cl='warn'}else if(price<cp*.85){cm=t('clo');cl='warn'}}
+ if(be>u){cm+=' '+t('bew');cl='bad'}
+ S.pr={price,pf,be};persist();$('b_price').value=price;$('b_var').value=Math.round(vr);$('b_fix').value=fx;$('b_units').value=u;
+ $('p_out').innerHTML=`<div class="res ${cl}"><div class="hint">${t('sp')}</div><div class="big">${inr(price)}</div>${g?`<div>${t('inc')}: ${inr(price*(1+g/100))}</div>`:''}<div class="kv"><span>${t('cpu')}</span><span>${inr(cost)}</span></div><div class="kv"><span>${t('ppu')}</span><span>${inr(pf)}</span></div><div class="kv"><span>${t('mpf')}</span><span>${inr(pf*u)}</span></div><div class="kv"><span>${t('be')}</span><span>${be}</span></div>${cm?`<p>${cm}</p>`:''}</div>`};
+$('b_go').onclick=()=>{RAN.b=1;const st=num('b_start'),fx=num('b_fix'),c=num('b_price')-num('b_var'),u=num('b_units'),mp=c*u-fx,pb=mp>0?Math.ceil(st/mp):0;
+ S.bu={mp,pb};persist();const cl=mp<=0?'bad':pb>18?'warn':'';
+ $('b_out').innerHTML=`<div class="res ${cl}"><div class="hint">${t('mpf')}</div><div class="big">${inr(mp)}</div><div class="kv"><span>${t('be')}</span><span>${c>0?Math.ceil(fx/c):'-'}</span></div><div class="kv"><span>${t('rec')}</span><span>${pb||t('nl')}</span></div><p>${mp<=0?t('bl'):t('bo')}</p></div>`};
+
+$('d_go').onclick=()=>{RAN.d=1;const ty=+$('d_type').value,amt=num('d_amt'),pf=num('d_prof'),sv=num('d_sav'),dm=+$('d_dem').value,fm=1-$('d_fam').value;
+ const pb=pf>0?amt/pf:99,sc=(pb<=6?3:pb<=12?2:pb<=24?1:0)+(sv>=amt*.5?2:sv>=amt*.2?1:0)+(2-dm)+fm;
+ const lv=sc>=6?['rl','']:sc>=4?['rm2','warn']:['rh','bad'],nx=sc>=6?'nk':sc>=4?'nm':'nh',r=.01,emi=amt*r*Math.pow(1+r,24)/(Math.pow(1+r,24)-1);
+ S.de={lv:lv[0],nx};persist();
+ $('d_out').innerHTML=`<div class="box"><div class="res ${lv[1]}"><div class="big">${t(lv[0])}</div><div class="hint">${sc} / 8</div><div class="kv"><span>${t('eb')}</span><span>${pf>0?Math.ceil(pb):'-'}</span></div>${ty===0?`<div class="kv"><span>${t('emi')}</span><span>${inr(emi)}</span></div>`:''}</div><h3 style="margin-top:14px">${t('op')}</h3><ul><li>${t('o1')}</li><li>${t('o3')}</li></ul><h3>${t('nx')}</h3><p>${t(nx)}</p></div>`};
+
+function say(x,c){const m=document.createElement('div');m.className='msg '+c;m.innerHTML=c==='u'?esc(x):x;$('chat').appendChild(m);$('chat').scrollTop=1e9}
+function ask(q){q=q.trim();if(!q)return;say(q,'u');const l=q.toLowerCase();let b=null,bs=0;for(const k in KW){const s=KW[k].filter(w=>l.includes(w)).length;if(s>bs){bs=s;b=k}}setTimeout(()=>say(b?t(b):t('fb'),'b'),300)}
+$('qs').onclick=()=>{ask($('q').value);$('q').value=''};$('q').onkeydown=e=>{if(e.key==='Enter')$('qs').click()};
+
+function rPlan(){const L=[`<b>${esc(S.name||tn())}</b>: ${esc(tn())}${S.area?' · 📍 '+esc(S.area):''}`,
+ `<b>${t('n2')}:</b> ${t('c1')} ${t('w1')}`,
+ `<b>${t('n3')}:</b> ${S.pr?`${t('sp')} ${inr(S.pr.price)}, ${t('ppu')} ${inr(S.pr.pf)}, ${t('be')} ${S.pr.be}`:'—'}${S.bu?`<br>${t('mpf')} ${inr(S.bu.mp)}, ${t('rec')} ${S.bu.pb||t('nl')}`:''}`,
+ `<b>${t('n4')}:</b> ${S.de?`${t(S.de.lv)}. ${t(S.de.nx)}`:'—'}`,`<b>✔</b> ${t('plg')}`];
+ $('plan').innerHTML=`<div class="box"><ul>${L.map(x=>`<li>${x}</li>`).join('')}</ul>${strH()}</div>`}
+
+try{const j=JSON.parse(localStorage.getItem('she_v2'));if(j&&j.S){Object.assign(S,j.S);$('rem').checked=true;$('bname').value=S.name;$('barea').value=S.area;$('bcust').value=S.cust;$('bother').value=S.oth;$('btype').selectedIndex=S.type;$('bstage').selectedIndex=S.stage;setLang(j.LI||0);$('btype').value=S.type;$('bstage').value=S.stage;$('owrap').style.display=S.type===7?'block':'none'}}catch(e){}
+if(!$('rem').checked){setLang(0);$('splash').style.display='flex'}
+</script></body></html>
